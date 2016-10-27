@@ -1,0 +1,35 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "\"Marvel comicbook suggestion\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhighe/Project-2-Comics.git"
+  },
+  "author": "Donald Highe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhighe/Project-2-Comics/issues"
+  },
+  "homepage": "https://github.com/dhighe/Project-2-Comics#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "ejs": "^2.5.2",
+    "eslint": "^3.8.1",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "node-fetch": "^1.6.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1"
+  }
+}
