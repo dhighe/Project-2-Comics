@@ -8,7 +8,7 @@ const express           = require('express');
 const logger            = require('morgan');
 
 const app               = express();
-const PORT              = process.env.PORT || 3000;
+const PORT              = process.argv[2] || process.env.PORT || 3000;
 const homeRoute = require('./routes/index');
 
 app.use(logger('dev'));

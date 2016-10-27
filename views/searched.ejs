@@ -28,12 +28,11 @@
     <p><%= movie.overview %></p>
     </div>
   <h1>Comics</h1>
-  <% if (comic.length >= 2) { %>
-       <% for (let i = 0; i < 5; i++) { %>
-    <h1><%= comic[i].title %></h1>
-    <img src="<%= comic[i].images[0].path %>.jpg" alt="">
-    <p><%= comic[i].description %></p>
-    <% }; %>
+    <div>
+    <% for (let i = 0; i < 2; i++) { %>
+    <h1><%= comic.results[i].title %></h1>
+    <img src="<%= comic.results[i].resourceURI %>" alt="">
+    <p><%= comic.results[i].description %></p>
     <% }; %>
     </div>
   <a href="http://localhost:3000/profile">

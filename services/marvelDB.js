@@ -1,14 +1,21 @@
 const fetch = require('node-fetch');
+const timestamp = require('timestamp');
+const md5 = require('js-md5');
 
 const API_URL = 'https://gateway.marvel.com:443/v1/public/comics?';
 const API_KEY = process.env.MARVEL_KEY;
-const placeholder = 10; // will edit to be drop down menu that can increase or decrease the search size
+const APIP_KEY = process.env.MARVELPRIVATE_KEY;
+// will edit to be drop down menu that can increase or decrease the search size
+const ts = timestamp();
 
 function searchComics(req, res, next) {
-  fetch(`${API_URL}format=comic&formatType=comic&title=${req.query.search}&hasDigitalIssue=true&orderBy=focDate&limit=${placeholder}&apikey=${API_KEY}`)
+  let hash = md5(ts + APIP_KEY + API_KEY);
+  console.log('Comic:', req.query.mpfour);
+  fetch(`${API_URL}ts=${ts}&format=comic&formatType=comic&title=${req.query.mpfour}&orderBy=focDate&limit=25&apikey=${API_KEY}&hash=${hash}`)
   .then(r => r.json())
   .then((result) => {
-    res.tunes = result;
+    console.log(res.comic);
+    res.comic = result.data.results;
     next();
   })
   .catch((err) => {

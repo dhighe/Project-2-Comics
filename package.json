@@ -21,10 +21,12 @@
     "ejs": "^2.5.2",
     "eslint": "^3.8.1",
     "express": "^4.14.0",
+    "js-md5": "^0.4.1",
     "mongodb": "^2.2.11",
     "morgan": "^1.7.0",
     "node-fetch": "^1.6.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "timestamp": "0.0.1"
   },
   "devDependencies": {
     "eslint": "^3.8.1",
