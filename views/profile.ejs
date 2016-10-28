@@ -24,12 +24,8 @@
     </form>
 
     <h1>Saved Comics</h1>
-    <% if (saved.length >= 2) { %>
-      <% for (let i = 0; i < 5; i++) { %>
-      <h1><%= saved[i].title %></h1>
-      <img src="<%= saved[i].images[0].path %>.jpg" alt="">
-      <p><%= saved[i].description %></p>
-     <% }; %>
-    <% }; %>
+    <h1><%= saved.title %></h1>
+    <p><%= saved.description %></p>
+
   </body>
 </html>

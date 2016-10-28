@@ -21,15 +21,18 @@ router.get('/searched', searchMovies, searchComics, (req, res) => {
   });
 });
 
-router.post('/added', marvel.saveComics, (req, res) => {
-  res.redirect;
+router.post('/profile', marvel.saveComics, (req, res) => {
+  // res.json(res.saved);
+  res.redirect('./main');
 });
 
 router.get('/profile', marvel.getComics, (req, res) => {
   res.render('profile', {
-    saved: res.favorites || [],
+    saved: res.saved || [],
   });
 });
+
+
 
 router.get('/signup', (req, res) => {
   res.render('signup');

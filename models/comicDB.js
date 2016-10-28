@@ -1,17 +1,20 @@
 const { MongoClient } = require('mongodb');
 const { ObjectID } = require('mongodb');
 
-const dbConnection = 'mongodb://localhost:27017/user-data';
+const dbConnection = 'mongodb://localhost:27017/user_data';
 
 function saveComics(req, res, next) {
-  MongoClient.connect(dbConnection, (error, data) => {
+  MongoClient.connect(dbConnection, (error, db) => {
     if (error) return next(error);
 
-    data.collection('saved_comics')
-    .insert(req.body.favorite, (err, info) => {
+    db.collection('saved_comics')
+    .insert(req.body.saved, (err, info) => {
+      console.log('Error: ', err);
       if (err) return next(err);
-
+      console.log(res.saved);
       res.saved = info;
+      db.close();
+      return next();
     });
     return false;
   });
@@ -21,14 +24,13 @@ function saveComics(req, res, next) {
 function getComics(req, res, next) {
   MongoClient.connect(dbConnection, (err, db) => {
     if (err) return next(err);
-
+    console.log('Here are your saved Comics');
     db.collection('saved_comics')
       .find({})
-      .sort({ Title: 1 })
       .toArray((arrayError, data) => {
         if (arrayError) return next(arrayError);
 
-        res.favorites = data;
+        res.saved = data;
         db.close();
         return next();
       });
@@ -37,25 +39,7 @@ function getComics(req, res, next) {
   return false;
 }
 
-function deleteComics(req, res, next) {
-  MongoClient.connect(dbConnection, (err, db) => {
-    if (err) return next(err);
-
-    db.collection('saved_comics')
-    .findAndRemove({ _id: ObjectID(req.params.id) }, (removeError, info) => {
-      if (removeError) return next(removeError);
-
-      res.removed = info;
-      db.close();
-      return next();
-    });
-    return false;
-  });
-  return false;
-}
-
 module.exports = {
   saveComics,
   getComics,
-  deleteComics,
 };
