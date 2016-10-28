@@ -8,8 +8,11 @@
   <link rel="stylesheet" href="">
 </head>
   <body>
-    <a href="http://localhost:3000/">
+    <a href="http://localhost:3000/main">
       <input type="button" value="Back to Main"/>
+    </a>
+    <a href="http://localhost:3000/">
+      <input type="button" value="Log Out"/>
     </a>
     <form action="/profile" method="get">
       <input type="text" name="username" placeholder="Username">
@@ -21,5 +24,12 @@
     </form>
 
     <h1>Saved Comics</h1>
+    <% if (saved.length >= 2) { %>
+      <% for (let i = 0; i < 5; i++) { %>
+      <h1><%= saved[i].title %></h1>
+      <img src="<%= saved[i].images[0].path %>.jpg" alt="">
+      <p><%= saved[i].description %></p>
+     <% }; %>
+    <% }; %>
   </body>
 </html>

@@ -11,6 +11,9 @@
   <a href="http://localhost:3000/">
     <input type="button" value="Log Out"/>
   </a>
+  <a href="http://localhost:3000/profile">
+    <input type="button" value="Profile"/>
+  </a>
   </br>
   <form action="/searched" method="get">
     <input type="text" name="mpfour" placeholder="Search Movies or Show">
@@ -19,25 +22,29 @@
   <select id="dropdown">
     <option value="movie">movie</option>
     <option value="tv">tv</option>
-    option
   </select>
   <h1>Movies</h1>
     <div>
-    <h1><%= movie.title %></h1>
-    <img src="<%= movie.poster_path %>" alt="">
-    <p><%= movie.overview %></p>
+    <% if (comic.length) { %>
+      <h1><%= movie.title %></h1>
+      <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2<%= movie.poster_path %>" >
+      <p><%= movie.overview %></p>
+    <% }; %>
     </div>
   <h1>Comics</h1>
   <% if (comic.length >= 2) { %>
-       <% for (let i = 0; i < 5; i++) { %>
-    <h1><%= comic[i].title %></h1>
-    <img src="<%= comic[i].images[0].path %>.jpg" alt="">
-    <p><%= comic[i].description %></p>
+    <% for (let i = 0; i < 5; i++) { %>
+      <h1><%= comic[i].title %></h1>
+      <img src="<%= comic[i].images[0].path %>.jpg" alt="">
+      <p><%= comic[i].description %></p>
+        <form action="/added" method="post">
+          <input type="hidden" name="favorite[Title]" value="<%= comic[i].title %>" >
+          <input type="hidden" name="favorite[Image]" value="<%= comic[i].images[0].path %>.jpg" >
+          <input type="hidden" name="favorite[Description]" value="<%= comic[i].description %>">
+          <input type="submit" value="Save">
+        </form>
+      <% }; %>
     <% }; %>
-    <% }; %>
-    </div>
-  <a href="http://localhost:3000/profile">
-    <input type="button" value="Profile"/>
-  </a>
+  </div>
   </body>
 </html>

@@ -2,7 +2,6 @@ const { MongoClient } = require('mongodb');
 
 const dbConnection = 'mongodb://localhost:27017/user-data';
 
-
 function saveUsers(req, res, next) {
   MongoClient.connect(dbConnection, (error, data) => {
     if (error) return next(error);

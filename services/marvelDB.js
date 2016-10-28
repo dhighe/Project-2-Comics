@@ -24,4 +24,6 @@ function searchComics(req, res, next) {
   });
 }
 
-module.exports = { searchComics };
+module.exports = {
+  searchComics,
+};
