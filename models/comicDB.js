@@ -11,7 +11,6 @@ function saveComics(req, res, next) {
     .insert(req.body.saved, (err, info) => {
       console.log('Error: ', err);
       if (err) return next(err);
-      console.log(res.saved);
       res.saved = info;
       db.close();
       return next();
@@ -39,7 +38,25 @@ function getComics(req, res, next) {
   return false;
 }
 
+function deleteComics(req, res, next) {
+  MongoClient.connect(dbConnection, (err, db) => {
+    if (err) return next(err);
+    db.collection('saved_comics')
+      .findAndRemove({ _id: ObjectID(req.params.id) }, (removeErr, result) => {
+        if (removeErr) return next(removeErr);
+
+        res.removed = result;
+        db.close();
+        next();
+      });
+      return false;
+  });
+  return false;
+}
+
+
 module.exports = {
   saveComics,
   getComics,
+  deleteComics,
 };

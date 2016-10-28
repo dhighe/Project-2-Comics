@@ -37,7 +37,7 @@
       <h1><%= comic[i].title %></h1>
       <img src="<%= comic[i].images[0].path %>.jpg" alt="">
       <p><%= comic[i].description %></p>
-        <form action="/profile" method="post">
+        <form action="/added" method="post">
           <input type="hidden" name="saved[title]" value="<%= comic[i].title %>" >
           <input type="hidden" name="saved[image]" value="<%= comic[i].images[0].path %>.jpg" >
           <input type="hidden" name="saved[description]" value="<%= comic[i].description %>">

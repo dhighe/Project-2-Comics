@@ -24,8 +24,15 @@
     </form>
 
     <h1>Saved Comics</h1>
-    <h1><%= saved.title %></h1>
-    <p><%= saved.description %></p>
-
+    <% if(saved.length) { %>
+      <% saved.forEach((x) => { %>
+      <h1><%= x.title %></h1>
+      <img src="<%= x.image %>">
+      <p><%= x.description %></p>
+        <form action="/profile/delete/<%= x._id %>?_method=DELETE" method="post">
+          <input type="submit" value="Delete">
+        </form>
+      <% }); %>
+    <% } %>
   </body>
 </html>
