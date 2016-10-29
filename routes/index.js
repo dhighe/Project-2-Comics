@@ -22,7 +22,7 @@ router.get('/searched', searchMovies, searchComics, (req, res) => {
 });
 
 router.post('/added', marvel.saveComics, (req, res) => {
-  res.redirect('./main');
+  res.redirect('back');
 });
 
 router.delete('/:id', marvel.deleteComics, (req, res) => {

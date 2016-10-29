@@ -47,7 +47,7 @@ function deleteComics(req, res, next) {
 
         res.removed = result;
         db.close();
-        return next();
+        next();
       });
       return false;
   });
