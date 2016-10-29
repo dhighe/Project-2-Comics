@@ -25,8 +25,8 @@ router.post('/added', marvel.saveComics, (req, res) => {
   res.redirect('./main');
 });
 
-router.delete('/delete/:id', marvel.deleteComics, (req, res) => {
-  res.redirect('./profile');
+router.delete('/:id', marvel.deleteComics, (req, res) => {
+  res.redirect('profile');
   });
 
 router.get('/profile', marvel.getComics, (req, res) => {

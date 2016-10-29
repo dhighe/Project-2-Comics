@@ -10,11 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/dhighe/Project-2-Comics.git"
   },
-  "author": "Donald Highe",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dhighe/Project-2-Comics/issues"
-  },
   "homepage": "https://github.com/dhighe/Project-2-Comics#readme",
   "dependencies": {
     "bcryptjs": "^2.3.0",
@@ -40,5 +35,10 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1"
-  }
+  },
+  "author": "Donald Highe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhighe/Project-2-Comics/issues"
+  },
 }

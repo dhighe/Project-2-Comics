@@ -47,13 +47,12 @@ function deleteComics(req, res, next) {
 
         res.removed = result;
         db.close();
-        next();
+        return next();
       });
       return false;
   });
   return false;
 }
-
 
 module.exports = {
   saveComics,
