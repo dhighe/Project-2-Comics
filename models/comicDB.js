@@ -23,13 +23,9 @@ function saveComics(req, res, next) {
 function getComics(req, res, next) {
   // creating an empty object for the insertObj
   const insertObj = {};
-
-  // copying all of req.body into insertObj
   for(key in req.body) {
     insertObj[key] = req.body[key];
   }
-
-  // Adding userId to insertObj
   insertObj.favorite.userId = req.session.userId;
 
   getData().then((db) => {
