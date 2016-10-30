@@ -3,25 +3,40 @@
 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 require('dotenv').config();
-const express         = require('express');
-const morgan          = require('morgan');
-const path            = require('path');
-const bodyParser      = require('body-parser');
-const session         = require('express-session');
-const cookieParser    = require('cookie-parser');
-const methodOverride  = require('method-override');
+const express               = require('express');
+const logger                = require('morgan');
+const path                  = require('path');
+const bodyParser            = require('body-parser');
+const session               = require('express-session');
+const cookieParser          = require('cookie-parser');
+const methodOverride        = require('method-override');
 
-const app               = express();
-const PORT              = process.argv[2] || process.env.PORT || 3000;
-const homeRoute = require('./routes/index');
+const app                   = express();
+const PORT                  = process.argv[2] || process.env.PORT || 3000;
+const indexRouter           = require('./routes/index');
+const authRouter            = require('./routes/auth');
+const profileRouter         = require('./routes/profile');
 
-app.use(morgan('dev'));
+
+const SECRET                = 'rafasTacos3000';
+
+app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use(methodOverride('_method'));
+
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: SECRET
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use('/', homeRoute);
+app.use('/auth', authRouter);
+app.use('/main', indexRouter);
+app.use('/profile', profileRouter);
 
 app.listen(PORT, () => console.warn('Welcome to port:', PORT));

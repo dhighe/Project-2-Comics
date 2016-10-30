@@ -1,10 +1,10 @@
-const { MongoClient } = require('mongodb');
 const { ObjectID } = require('mongodb');
+const { getData }    = require('../lib/database.js');
 
-const dbConnection = 'mongodb://localhost:27017/user_data';
+// const dbConnection = 'mongodb://localhost:27017/user_data';
 
 function saveComics(req, res, next) {
-  MongoClient.connect(dbConnection, (error, db) => {
+  getData().then((db) => {
     if (error) return next(error);
 
     db.collection('saved_comics')
@@ -21,7 +21,18 @@ function saveComics(req, res, next) {
 }
 
 function getComics(req, res, next) {
-  MongoClient.connect(dbConnection, (err, db) => {
+  // creating an empty object for the insertObj
+  const insertObj = {};
+
+  // copying all of req.body into insertObj
+  for(key in req.body) {
+    insertObj[key] = req.body[key];
+  }
+
+  // Adding userId to insertObj
+  insertObj.favorite.userId = req.session.userId;
+
+  getData().then((db) => {
     if (err) return next(err);
     console.log('Here are your saved Comics');
     db.collection('saved_comics')
@@ -39,7 +50,7 @@ function getComics(req, res, next) {
 }
 
 function deleteComics(req, res, next) {
-  MongoClient.connect(dbConnection, (err, db) => {
+  getData().then((db) => {
     if (err) return next(err);
     db.collection('saved_comics')
       .findAndRemove({ _id: ObjectID(req.params.id) }, (removeErr, result) => {

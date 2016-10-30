@@ -1,22 +1,63 @@
-const { MongoClient } = require('mongodb');
+/* eslint no-multi-spaces: ["error", { exceptions: { "VariableDeclarator": true } }] */
+/* eslint no-param-reassign: ["error", { "props": false }] */
 
-const dbConnection = 'mongodb://localhost:27017/user-data';
+const { ObjectID } = require('mongodb');
+const { getData }    = require('../lib/database.js');
+const bcrypt       = require('bcryptjs');
 
-function saveUsers(req, res, next) {
-  MongoClient.connect(dbConnection, (error, data) => {
-    if (error) return next(error);
+const SALTROUNDS = 10;
 
-    data.collection('user_data')
-    .insert(req.body.favorite, (err, info) => {
-      if (err) return next(err);
+function saveUser(req, res, next) {
+  const userObject = {
+    username: req.body.user.username,
+    email: req.body.user.email,
 
-      res.saved = info;
-    });
-    return false;
+    // Store hashed password
+    password: bcrypt.hashSync(req.body.user.password, SALTROUNDS)
+  };
+
+  getData().then((db) => {
+    db.collection('user_info')
+      .insert(userObject, (userErr, dbUser) => {
+        if (userErr) return next(userErr);
+
+        res.user = dbUser;
+        db.close();
+        return next();
+      });
   });
-  return false;
+}
+
+function getId(id) {
+  return getData().then((db) => {
+    const promise = new Promise((resolve, reject) => {
+      db.collection('user_info')
+        .findOne({ _id: ObjectID(id) }, (infoError, user) => {
+          if (infoError) reject(infoError);
+          db.close();
+          resolve(user);
+        });
+    });
+    return promise;
+  });
+}
+
+function getUser(username) {
+  return getData().then((db) => {
+    const promise = new Promise((resolve, reject) => {
+      db.collection('user_info')
+        .findOne({ username }, (infoError, user) => {
+          if (infoError) reject(infoError);
+          db.close();
+          resolve(user);
+        });
+    });
+    return promise;
+  });
 }
 
 module.exports = {
-  saveUsers,
+  saveUser,
+  getId,
+  getUser
 };

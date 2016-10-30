@@ -1,43 +1,26 @@
-const router = require('express').Router();
-const { searchMovies } = require('../services/theMovieDB');
-const { searchComics } = require('../services/marvelDB');
-const marvel = require('../models/comicDB');
+const express              = require('express');
+const { searchMovies }    = require('../services/theMovieDB');
+const { searchComics }    = require('../services/marvelDB');
+const marvel              = require('../models/comicDB');
 
-router.get('/', (req, res) => {
-  res.render('index');
-});
+const indexrouter  = express.Router();
 
-router.get('/main', (req, res) => {
+indexrouter.get('/main', (req, res) => {
   res.render('main', {
     movie: res.movie || [],
     comic: res.comic || [],
   });
 });
 
-router.get('/searched', searchMovies, searchComics, (req, res) => {
+indexrouter.get('/searched', searchMovies, searchComics, (req, res) => {
   res.render('main', {
     movie: res.movie || [],
     comic: res.comic || [],
   });
 });
 
-router.post('/added', marvel.saveComics, (req, res) => {
+indexrouter.post('/added', marvel.saveComics, (req, res) => {
   res.redirect('back');
 });
 
-router.delete('/:id', marvel.deleteComics, (req, res) => {
-  res.redirect('profile');
-  });
-
-router.get('/profile', marvel.getComics, (req, res) => {
-  res.render('profile', {
-    saved: res.saved || [],
-  });
-});
-
-
-router.get('/signup', (req, res) => {
-  res.render('signup');
-});
-
-module.exports = router;
+module.exports = indexrouter;
