@@ -18,8 +18,6 @@ const authRouter            = require('./routes/auth');
 const profileRouter         = require('./routes/profile');
 
 
-
-
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

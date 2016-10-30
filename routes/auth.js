@@ -13,18 +13,12 @@ authRouter.post('/', logIn, (req, res) => {
   res.render('main');
 });
 
-authRouter.delete('/', (req, res) => {
-  req.session.userId = null;
-  res.render('index');
-});
-
 authRouter.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-authRouter.post('/', saveUser, (req, res) => {
+authRouter.post('/signedup', saveUser, (req, res) => {
   res.redirect('/');
 });
-
 
 module.exports = authRouter;
