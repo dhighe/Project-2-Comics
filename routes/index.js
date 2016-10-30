@@ -17,7 +17,7 @@ indexRouter.get('/', authenticateUsers, (req, res) => {
   });
 });
 
-indexRouter.post('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
+indexRouter.get('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
   res.render('main', {
     user: res.username,
     movie: res.movie || [],

@@ -15,7 +15,7 @@
     <input type="button" value="Profile"/>
   </a>
   </br>
-  <form action="/main/searched" method="post">
+  <form action="/main/searched" method="get">
     <input type="text" name="mpfour" placeholder="Search Movies or Show">
     <input type="submit" value="Search">
   </form>
@@ -34,13 +34,13 @@
   <h1>Comics</h1>
   <% if (comic.length >= 2) { %>
     <% for (let i = 0; i < 5; i++) { %>
-      <h1><%= comic[i].title %></h1>
-      <img src="<%= comic[i].images[0].path %>.jpg" alt="">
-      <p><%= comic[i].description %></p>
+      <h1><%= comic.results[i].title %></h1>
+      <img src="<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" alt="">
+      <p><%= comic.results[i].description %></p>
         <form action="/added" method="post">
-          <input type="hidden" name="saved[title]" value="<%= comic[i].title %>" >
-          <input type="hidden" name="saved[image]" value="<%= comic[i].images[0].path %>.jpg" >
-          <input type="hidden" name="saved[description]" value="<%= comic[i].description %>">
+          <input type="hidden" name="saved[title]" value="<%= comic.results[i].title %>" >
+          <input type="hidden" name="saved[image]" value="<%= comic.results[i].images[0].path %>.jpg" >
+          <input type="hidden" name="saved[description]" value="<%= comic.results[i].description %>">
           <input type="submit" value="Save">
         </form>
       <% }; %>

@@ -10,12 +10,12 @@ const ts = timestamp();
 
 function searchComics(req, res, next) {
   let hash = md5(ts + APIP_KEY + API_KEY);
-  console.log('Comic:', req.query.mpfour);
-  fetch(`${API_URL}ts=${ts}&format=comic&formatType=comic&title=${req.query.mpfour}&orderBy=focDate&limit=25&apikey=${API_KEY}&hash=${hash}`)
+  console.log('Comic:', req.body.mpfour);
+  fetch(`${API_URL}ts=${ts}&format=comic&formatType=comic&title=${req.body.mpfour}&orderBy=focDate&limit=25&apikey=${API_KEY}&hash=${hash}`)
   .then(r => r.json())
   .then((result) => {
     console.log(res.comic);
-    res.comic = result.data.results;
+    res.comic = result.data;
     next();
   })
   .catch((err) => {
@@ -24,6 +24,4 @@ function searchComics(req, res, next) {
   });
 }
 
-module.exports = {
-  searchComics,
-};
+module.exports = { searchComics };

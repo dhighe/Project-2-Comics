@@ -8,9 +8,9 @@ const API_URL_T = 'http://api.themoviedb.org/3/search/tv?';
 const API_KEY = process.env.THEMOVIEDB_KEY;
 
 function searchMovies(req, res, next) {
-  console.log('Movie:', req.query.mpfour);
+  console.log('Movie:', req.body.mpfour);
   // if (dropdown === 'movie') {
-  //   fetch(`${API_URL_M}api_key=${API_KEY}&query=${req.query.mpfour}`)
+  //   fetch(`${API_URL_M}api_key=${API_KEY}&query=${req.body.mpfour}`)
   //   .then(r => r.json())
   //   .then((result) => {
   //     res.movie = result;
@@ -21,7 +21,7 @@ function searchMovies(req, res, next) {
   //     next();
   //   });
   // } else if (dropdown === 'tv') {
-  //   fetch(`${API_URL_T}api_key=${API_KEY}&query=${req.query.mpfour}`)
+  //   fetch(`${API_URL_T}api_key=${API_KEY}&query=${req.body.mpfour}`)
   //   .then(r => r.json())
   //   .then((result) => {
   //     res.movie = result;
@@ -34,9 +34,10 @@ function searchMovies(req, res, next) {
   // }
 
 
-  fetch(`${API_URL_M}api_key=${API_KEY}&query='${req.query.mpfour}'`)
+  fetch(`${API_URL_M}api_key=${API_KEY}&query='${req.body.mpfour}'`)
   .then(r => r.json())
   .then((result) => {
+    console.log(res.movie);
     res.movie = result.results[0];
     next();
   })
