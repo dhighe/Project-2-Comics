@@ -7,26 +7,26 @@ const { searchMovies }        = require('../services/theMovieDB');
 const { searchComics }        = require('../services/marvelDB');
 const marvel                  = require('../models/comicDB');
 
-const indexrouter  = express.Router();
+const indexRouter  = express.Router();
 
-indexrouter.get('/main', authenticateUsers, (req, res) => {
+indexRouter.get('/', authenticateUsers, (req, res) => {
   res.render('main', {
-    user: res.user,
+    user: res.username,
     movie: res.movie || [],
     comic: res.comic || [],
   });
 });
 
-indexrouter.post('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
+indexRouter.post('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
   res.render('main', {
-    user: res.user,
+    user: res.username,
     movie: res.movie || [],
     comic: res.comic || [],
   });
 });
 
-indexrouter.post('/added', marvel.saveComics, (req, res) => {
+indexRouter.post('/added', marvel.saveComics, (req, res) => {
   res.redirect('back');
 });
 
-module.exports = indexrouter;
+module.exports = indexRouter;

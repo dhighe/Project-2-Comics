@@ -13,8 +13,8 @@ const methodOverride        = require('method-override');
 
 const app                   = express();
 const PORT                  = process.argv[2] || process.env.PORT || 3000;
-const indexRouter           = require('./routes/index');
 const authRouter            = require('./routes/auth');
+const indexRouter           = require('./routes/index');
 const profileRouter         = require('./routes/profile');
 
 
