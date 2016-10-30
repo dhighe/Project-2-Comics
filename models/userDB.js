@@ -1,19 +1,19 @@
 /* eslint no-multi-spaces: ["error", { exceptions: { "VariableDeclarator": true } }] */
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
-const { ObjectID } = require('mongodb');
-const { getData }    = require('../lib/database.js');
-const bcrypt       = require('bcryptjs');
+const { ObjectID }    = require('mongodb');
+const { getData }     = require('../lib/database.js');
+const bcrypt          = require('bcryptjs');
 
 const SALTROUNDS = 10;
 
 function saveUser(req, res, next) {
   const userObject = {
-    username: req.body.user.username,
-    email: req.body.user.email,
+    username: req.body.username.username,
+    email: req.body.username.email,
 
     // Store hashed password
-    password: bcrypt.hashSync(req.body.user.password, SALTROUNDS)
+    password: bcrypt.hashSync(req.body.username.password, SALTROUNDS)
   };
 
   getData().then((db) => {

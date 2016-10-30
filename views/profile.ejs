@@ -11,16 +11,14 @@
     <a href="http://localhost:3000/main">
       <input type="button" value="Back to Main"/>
     </a>
-    <a href="http://localhost:3000/">
-      <input type="button" value="Log Out"/>
-    </a>
-    <form action="/profile" method="get">
-      <input type="text" name="username" placeholder="Username">
-      <input type="test" name="email" placeholder="example@example.com">
-      <input type="submit" value="Update">
+    <form action="/auth?_method=DELETE" method="post">
+      <input type="submit" value="Logout">
     </form>
-    <form action="/" method="get">
-      <input type="submit" value="Delete">
+    <form action="/profile" method="get">
+        <input type="text" name="username[username]" value="" placeholder="Username">
+        <input type="password" name="username[password]" value="" placeholder="Password">
+        <input type="submit" name="namename" value="Log in">
+
     </form>
 
     <h1>Saved Comics</h1>

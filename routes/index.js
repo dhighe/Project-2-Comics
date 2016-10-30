@@ -9,7 +9,7 @@ const marvel                  = require('../models/comicDB');
 
 const indexrouter  = express.Router();
 
-indexrouter.get('/main', (req, res) => {
+indexrouter.get('/main', authenticateUsers, (req, res) => {
   res.render('main', {
     user: res.user,
     movie: res.movie || [],
@@ -17,7 +17,7 @@ indexrouter.get('/main', (req, res) => {
   });
 });
 
-indexrouter.get('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
+indexrouter.post('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
   res.render('main', {
     user: res.user,
     movie: res.movie || [],

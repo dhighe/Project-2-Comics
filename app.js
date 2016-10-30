@@ -18,24 +18,25 @@ const authRouter            = require('./routes/auth');
 const profileRouter         = require('./routes/profile');
 
 
-const SECRET                = 'rafasTacos3000';
+
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(methodOverride('_method'));
+app.use(cookieParser());
 
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: SECRET
+  secret: 'SECRET',
 }));
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use('/auth', authRouter);
+app.use('/', authRouter);
 app.use('/main', indexRouter);
 app.use('/profile', profileRouter);
 
