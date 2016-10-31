@@ -6,18 +6,24 @@
   <title>Login&Comics</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
   <link rel="stylesheet" href="">
-  <link href="/css/signIn.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+  <link href="./css/signIn.css" rel="stylesheet" type="text/css">
 </head>
   <body>
+<div class="fullscreen">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen_video">
+        <source src="Marvel- Ultimate Alliance - Super Trailer.mp4" type="video/mp4">
+    </video>
+</div>
     <div class="index">
-     <form class="" action="/loggedIn" method="post">
-        <input type="text" name="username[username]" placeholder="Username">
-        <input type="password" name="username[password]" placeholder="Password">
-        <input type="submit" name="username" value="Log in">
+     <form class="container" action="/loggedIn" method="post">
+      <input class="user" type="text" name="username[username]" placeholder="Username">
+      <input class="user" type="password" name="username[password]" placeholder="Password">
+      <input class="button" type="submit" name="username" value="Log in">
     </form>
-      <a href="http://localhost:3000/signup">
-        <input type="button" value="Sign Up"/>
-      </a>
+    <a href="http://localhost:3000/signup">
+      <input class="button" type="button" value="Sign Up"/>
+    </a>
     </div>
   </body>
 </html>
