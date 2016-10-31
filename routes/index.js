@@ -20,23 +20,13 @@ const filteredSearch = (req, res, next) => {
   return next();
 };
 
-indexRouter.get('/', authenticateUsers, filteredSearch, searchMovies, searchComics, (req, res) => {
+indexRouter.get('/', authenticateUsers, searchMovies, searchComics, (req, res) => {
   res.render('main', {
     user: res.username,
     movie: res.movie || [],
     comic: res.comic || [],
   });
 });
-
-// indexRouter.get('/searched', filteredSearch, authenticateUsers, searchMovies, searchComics, (req, res) => {
-//   console.log("Movies :", res.movie);
-//   console.log("Comics : ", res.comic);
-//   res.render('main', {
-//     user: res.username,
-//     movie: res.movie || [],
-//     comic: res.comic || [],
-//   });
-// });
 
 indexRouter.post('/added', marvel.saveComics, (req, res) => {
   res.redirect('back');

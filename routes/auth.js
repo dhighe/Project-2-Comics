@@ -1,6 +1,5 @@
 const express                   = require('express');
 const { saveUser }              = require('../models/userDB.js');
-const { authenticateUsers }     = require('../lib/auth');
 const { logIn }                 = require('../lib/auth');
 
 const authRouter                = express.Router();

@@ -11,7 +11,6 @@ function saveComics(req, res, next) {
   insertObj.saved.userId = req.session.userId;
 
   getData().then((db) => {
-
     db.collection('saved_comics')
     .insert(insertObj.saved, (err, info) => {
       console.log('Error: ', err);
@@ -26,12 +25,6 @@ function saveComics(req, res, next) {
 }
 
 function getComics(req, res, next) {
-  // creating an empty object for the insertObj
-  // const insertObj = {};
-  // for(key in req.body) {
-  //   insertObj[key] = req.body[key];
-  // }
-  // insertObj.saved.userId = req.session.userId;
 
   getData().then((db) => {
     console.log('Here are your saved Comics');
@@ -64,8 +57,28 @@ function deleteComics(req, res, next) {
   return false;
 }
 
+function editComics(req, res, next) {
+  getData().then((db) => {
+    db.collection('saved_comics')
+      .findAndModify({
+      query: { _id: ObjectID(req.params.id) },
+      update: {$set: {notes: req.body.username.notes}},
+      new: true}, (err, doc) => {
+        if (updateError) return next(updateError);
+
+        // return the data
+        res.updated = doc;
+        db.close();
+        return next();
+      });
+    return false;
+  });
+  return false;
+}
+
 module.exports = {
   saveComics,
   getComics,
   deleteComics,
+  editComics
 };

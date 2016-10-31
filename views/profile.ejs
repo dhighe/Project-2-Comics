@@ -8,16 +8,12 @@
   <link rel="stylesheet" href="">
 </head>
   <body>
+    <h1><%= user.username %>'s Profile</h1>
     <a href="http://localhost:3000/main">
       <input type="button" value="Back to Main"/>
     </a>
     <form action="/auth?_method=DELETE" method="put">
       <input type="submit" value="Logout">
-    </form>
-    <form action="/profile" method="post">
-        <input type="text" name="username[username]" value="" placeholder="Username">
-        <input type="password" name="username[password]" value="" placeholder="Password">
-        <input type="submit" name="username" value="Log in">
     </form>
 
     <h1>Saved Comics</h1>
@@ -25,9 +21,13 @@
       <% saved.forEach((x) => { %>
       <h1><%= x.title %></h1>
       <img src="<%= x.image %>">
-      <p><%= x.description %></p>
-        <form action="/<%= x._id %>?_method=DELETE" method="POST">
+      <p><%= x.notes %></p>
+        <form action="/profile/<%= x._id %>?_method=DELETE" method="POST">
           <input type="submit" value="Delete">
+        </form>
+        <form action="/profile/<%= x._id %>?_method=PUT" method="POST">
+          <input type="text" name="saved[notes]" value="<%= saved.notes %>">
+          <input type="submit" value="Add Notes">
         </form>
       <% }); %>
     <% } %>

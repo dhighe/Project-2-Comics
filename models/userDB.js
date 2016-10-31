@@ -21,7 +21,7 @@ function saveUser(req, res, next) {
       .insert(userObject, (userErr, dbUser) => {
         if (userErr) return next(userErr);
 
-        res.user = dbUser;
+        res.username = dbUser;
         db.close();
         return next();
       });
@@ -59,5 +59,5 @@ function getUser(username) {
 module.exports = {
   saveUser,
   getId,
-  getUser
+  getUser,
 };
