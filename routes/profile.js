@@ -4,23 +4,17 @@ const express                     = require('express');
 const { authenticateUsers }       = require('../lib/auth');
 const marvel                      = require('../models/comicDB');
 
-const profileRouter                 = express.Router();
+const profileRouter               = express.Router();
 
-profileRouter.get('/profile', authenticateUsers, (req, res) => {
+profileRouter.get('/', authenticateUsers, marvel.getComics, (req, res) => {
   res.render('profile', {
     user: res.username,
+    saved: res.saved || [],
   });
 });
 
 profileRouter.delete('/:id', marvel.deleteComics, (req, res) => {
   res.redirect('profile');
   });
-
-profileRouter.get('/profile', marvel.getComics, (req, res) => {
-  res.render('profile', {
-    saved: res.saved || [],
-  });
-});
-
 
 module.exports = profileRouter;

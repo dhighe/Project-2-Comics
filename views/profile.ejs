@@ -11,10 +11,10 @@
     <a href="http://localhost:3000/main">
       <input type="button" value="Back to Main"/>
     </a>
-    <form action="/auth?_method=DELETE" method="post">
+    <form action="/auth?_method=DELETE" method="put">
       <input type="submit" value="Logout">
     </form>
-    <form action="/profile" method="get">
+    <form action="/profile" method="post">
         <input type="text" name="username[username]" value="" placeholder="Username">
         <input type="password" name="username[password]" value="" placeholder="Password">
         <input type="submit" name="username" value="Log in">

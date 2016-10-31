@@ -4,11 +4,16 @@ const { getData }    = require('../lib/database.js');
 // const dbConnection = 'mongodb://localhost:27017/user_data';
 
 function saveComics(req, res, next) {
+  const insertObj = {};
+  for(key in req.body) {
+    insertObj[key] = req.body[key];
+  }
+  insertObj.saved.userId = req.session.userId;
+
   getData().then((db) => {
-    if (error) return next(error);
 
     db.collection('saved_comics')
-    .insert(req.body.saved, (err, info) => {
+    .insert(insertObj.saved, (err, info) => {
       console.log('Error: ', err);
       if (err) return next(err);
       res.saved = info;
@@ -22,17 +27,16 @@ function saveComics(req, res, next) {
 
 function getComics(req, res, next) {
   // creating an empty object for the insertObj
-  const insertObj = {};
-  for(key in req.body) {
-    insertObj[key] = req.body[key];
-  }
-  insertObj.favorite.userId = req.session.userId;
+  // const insertObj = {};
+  // for(key in req.body) {
+  //   insertObj[key] = req.body[key];
+  // }
+  // insertObj.saved.userId = req.session.userId;
 
   getData().then((db) => {
-    if (err) return next(err);
     console.log('Here are your saved Comics');
     db.collection('saved_comics')
-      .find({})
+      .find({ userId: { $eq: req.session.userId } })
       .toArray((arrayError, data) => {
         if (arrayError) return next(arrayError);
 
@@ -47,7 +51,6 @@ function getComics(req, res, next) {
 
 function deleteComics(req, res, next) {
   getData().then((db) => {
-    if (err) return next(err);
     db.collection('saved_comics')
       .findAndRemove({ _id: ObjectID(req.params.id) }, (removeErr, result) => {
         if (removeErr) return next(removeErr);

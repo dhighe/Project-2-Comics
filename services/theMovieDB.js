@@ -8,9 +8,9 @@ const API_URL_T = 'http://api.themoviedb.org/3/search/tv?';
 const API_KEY = process.env.THEMOVIEDB_KEY;
 
 function searchMovies(req, res, next) {
-  console.log('Movie:', req.body.mpfour);
+  console.log('Movie:', req.query.mpfour);
 
-  fetch(`${API_URL_M}api_key=${API_KEY}&query='${req.body.mpfour}'`)
+  fetch(`${API_URL_M}api_key=${API_KEY}&query='${req.query.mpfour}'`)
   .then(r => r.json())
   .then((result) => {
     res.movie = result.results[0];
