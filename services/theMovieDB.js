@@ -9,35 +9,10 @@ const API_KEY = process.env.THEMOVIEDB_KEY;
 
 function searchMovies(req, res, next) {
   console.log('Movie:', req.body.mpfour);
-  // if (dropdown === 'movie') {
-  //   fetch(`${API_URL_M}api_key=${API_KEY}&query=${req.body.mpfour}`)
-  //   .then(r => r.json())
-  //   .then((result) => {
-  //     res.movie = result;
-  //     next();
-  //   })
-  //   .catch((err) => {
-  //     res.error = err;
-  //     next();
-  //   });
-  // } else if (dropdown === 'tv') {
-  //   fetch(`${API_URL_T}api_key=${API_KEY}&query=${req.body.mpfour}`)
-  //   .then(r => r.json())
-  //   .then((result) => {
-  //     res.movie = result;
-  //     next();
-  //   })
-  //   .catch((err) => {
-  //     res.error = err;
-  //     next();
-  //   });
-  // }
-
 
   fetch(`${API_URL_M}api_key=${API_KEY}&query='${req.body.mpfour}'`)
   .then(r => r.json())
   .then((result) => {
-    console.log(res.movie);
     res.movie = result.results[0];
     next();
   })

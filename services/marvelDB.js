@@ -14,7 +14,6 @@ function searchComics(req, res, next) {
   fetch(`${API_URL}ts=${ts}&format=comic&formatType=comic&title=${req.body.mpfour}&orderBy=focDate&limit=25&apikey=${API_KEY}&hash=${hash}`)
   .then(r => r.json())
   .then((result) => {
-    console.log(res.comic);
     res.comic = result.data;
     next();
   })

@@ -10,13 +10,12 @@ const bodyParser            = require('body-parser');
 const session               = require('express-session');
 const cookieParser          = require('cookie-parser');
 const methodOverride        = require('method-override');
-
-const app                   = express();
-const PORT                  = process.argv[2] || process.env.PORT || 3000;
 const authRouter            = require('./routes/auth');
 const indexRouter           = require('./routes/index');
 const profileRouter         = require('./routes/profile');
 
+const app                   = express();
+const PORT                  = process.argv[2] || process.env.PORT || 3000;
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,3 +38,6 @@ app.use('/main', indexRouter);
 app.use('/profile', profileRouter);
 
 app.listen(PORT, () => console.warn('Welcome to port:', PORT));
+
+app.use(express.static(path.join(__dirname, 'public')));
+

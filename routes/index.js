@@ -9,6 +9,17 @@ const marvel                  = require('../models/comicDB');
 
 const indexRouter  = express.Router();
 
+
+const filteredSearch = (req, res, next) => {
+  const filterObj = {};
+  const search = req.query;
+
+  if ('title' in search) filterObj.feels = new RegExp(`\\b${search.title}`, 'i');
+
+  res.filteredQueryParams = filterObj;
+  return next();
+};
+
 indexRouter.get('/', authenticateUsers, (req, res) => {
   res.render('main', {
     user: res.username,
@@ -17,11 +28,12 @@ indexRouter.get('/', authenticateUsers, (req, res) => {
   });
 });
 
-indexRouter.get('/searched', authenticateUsers, searchMovies, searchComics, (req, res) => {
+indexRouter.post('/searched', filteredSearch, authenticateUsers, searchMovies, searchComics, (req, res) => {
+  console.log(res.movie)
   res.render('main', {
     user: res.username,
-    movie: res.movie || [],
-    comic: res.comic || [],
+    movie: res.movie,
+    comic: res.comic,
   });
 });
 

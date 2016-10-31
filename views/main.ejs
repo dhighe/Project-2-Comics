@@ -15,7 +15,7 @@
     <input type="button" value="Profile"/>
   </a>
   </br>
-  <form action="/main/searched" method="get">
+  <form action="/main/searched" method="POST">
     <input type="text" name="mpfour" placeholder="Search Movies or Show">
     <input type="submit" value="Search">
   </form>
@@ -39,7 +39,7 @@
       <p><%= comic.results[i].description %></p>
         <form action="/added" method="post">
           <input type="hidden" name="saved[title]" value="<%= comic.results[i].title %>" >
-          <input type="hidden" name="saved[image]" value="<%= comic.results[i].images[0].path %>.jpg" >
+          <input type="hidden" name="saved[image]" value= "<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" >
           <input type="hidden" name="saved[description]" value="<%= comic.results[i].description %>">
           <input type="submit" value="Save">
         </form>
