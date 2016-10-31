@@ -60,14 +60,12 @@ function deleteComics(req, res, next) {
 function editComics(req, res, next) {
   getData().then((db) => {
     db.collection('saved_comics')
-      .findAndModify({
-      query: { _id: ObjectID(req.params.id) },
-      update: {$set: {notes: req.body.username.notes}},
-      new: true}, (err, doc) => {
-        if (updateError) return next(updateError);
+      .findAndModify({ _id: ObjectID(req.params.id) }, [] /* sort */,
+      { $set: req.body.saved} , { new: true }, /* options */ (err, saved) => {
+        if (err) return next(err);
 
         // return the data
-        res.updated = doc;
+        res.updated = saved;
         db.close();
         return next();
       });

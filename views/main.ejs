@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Movies&Comics</title>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="">
+  <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+  <link href="./css/main.css" rel="stylesheet" type="text/css">
 </head>
   <body>
   <h1>Welcome <%= user.username %></h1>
@@ -36,16 +37,12 @@
   <% if (comic.results.length >= 2) { %>
     <% for (let i = 0; i < 5; i++) { %>
       <h1><%= comic.results[i].title %></h1>
-        <% if (comic.results[i].images === []) { %>
-        <img src="http://www.mayoautoauction.com/html/images/m_img-not-found485x326.jpg" alt="">
-      <% } else { %>
       <img src="<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" alt="">
-      <% }; %>
       <p><%= comic.results[i].description %></p>
         <form action="/main/added" method="post">
           <input type="hidden" name="saved[title]" value="<%= comic.results[i].title %>" >
           <input type="hidden" name="saved[image]" value="<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" >
-          <input type="hidden" name="saved[notes]" value=" ">
+          <input type="hidden" name="saved[notes]" value="">
           <input type="submit" value="Save">
         </form>
       <% }; %>
