@@ -4,7 +4,7 @@
 Search for your favorite marvel movies and find comics to read between release dates. (Doctor Strange is coming out soon if you want a place to start)
 
 # Wireframe #
-### Login Page ### 
+### Login Page 
 
 ![screen shot 2016-10-25 at 8 11 23 pm](https://cloud.githubusercontent.com/assets/20092541/19730955/d162ceb0-9b69-11e6-932d-7df29bccd9bc.png)
 
@@ -22,6 +22,7 @@ Search for your favorite marvel movies and find comics to read between release d
 
 # Technologies #
  * Node
+ * Mongo
  * Express
  * Marvel Api
   * https://developer.marvel.com/
