@@ -35,5 +35,9 @@ https://project2-marvel-comics.herokuapp.com/
 Sources
 Video used as background for landing and sign up page https://www.youtube.com/watch?v=LcZ9Bxc6nRkfkdlkfdjsalkfe
 
+Structure of MVC https://git.generalassemb.ly/wdi-nyc-60/itunes_crud_lab/tree/solution-a
+User Auth https://git.generalassemb.ly/wdi-nyc-60/user_auth_itunes
+
+
 
 
