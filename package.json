@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "engines": {
-    "node": "6.6.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dhighe/Project-2-Comics.git"
@@ -42,7 +39,10 @@
   },
   "author": "Donald Highe",
   "license": "MIT",
+  "engines": {
+    "node": "6.6.0"
+  },
   "bugs": {
     "url": "https://github.com/dhighe/Project-2-Comics/issues"
   },
-}
+},
