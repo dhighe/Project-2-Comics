@@ -34,6 +34,7 @@ Search for your favorite marvel movies and find comics to read between release d
 - [ ] Edit user information from profile 
 - [ ] Ability to select between Movie and TV show
 - [ ] Use select field to set limit of searched comics
+- [ ] Find an API or sight that allows users to read the comics they've saved
           
 
 # Heroku #
