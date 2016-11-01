@@ -40,7 +40,8 @@ Search for your favorite marvel movies and find comics to read between release d
 https://project2-marvel-comics.herokuapp.com/
 
 # Sources #
-Video used as background for landing and sign up page https://www.youtube.com/watch?v=LcZ9Bxc6nRkfkdlkfdjsalkfe
+Video used as background for landing and sign up page https://www.youtube.com/watch?v=LcZ9Bxc6nRkfkdlkfdjsalkfe (goodjob SouperboyX)
+
 
 Structure of MVC https://git.generalassemb.ly/wdi-nyc-60/itunes_crud_lab/tree/solution-a
 
