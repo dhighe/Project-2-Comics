@@ -20,4 +20,9 @@ authRouter.post('/signedup', saveUser, (req, res) => {
   res.redirect('/');
 });
 
+authRouter.delete('/logout', (req, res) => {
+  req.session.userId = null;
+  res.redirect('/');
+});
+
 module.exports = authRouter;

@@ -9,44 +9,55 @@
   <link href="./css/main.css" rel="stylesheet" type="text/css">
 </head>
   <body>
-  <h1>Welcome <%= user.username %></h1>
-  <a href="http://localhost:3000/">
-    <input type="button" value="Log Out"/>
-  </a>
-  <a href=/profile>
-    <input type="button" value="Profile"/>
-  </a>
+  <div class="profile">
+  <h1 class="user">Welcome <%= user.username %></h1>
+    <a href=/profile>
+      <input class="button" type="button" value="Profile"/>
+    </a>
+    <form action="/logout?_method=DELETE" method="post">
+      <input class="button" type="submit" value="Logout">
+    </form>
+  </div>
   </br>
   <form action="/main" method="get">
-    <input type="text" name="mpfour" placeholder="Search Movies or Show">
-    <input type="submit" value="Search">
+    <input class="search" type="text" name="mpfour" placeholder="Search Movies">
+    <input class="search-button" type="submit" value="Search">
   </form>
-  <select id="dropdown">
+<!--   <select id="dropdown">
     <option value="movie">movie</option>
     <option value="tv">tv</option>
-  </select>
-  <h1>Movies</h1>
-    <div>
-    <% if (comic.results.length) { %>
-      <h1><%= movie.title %></h1>
-      <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2<%= movie.poster_path %>" >
-      <p><%= movie.overview %></p>
-    <% }; %>
+  </select> -->
+  <div class="main">
+    <div class="movie-container">
+    <div class="movie-card">
+      <h1 class="heading">Movie</h1>
+        <% if (comic.results.length) { %>
+          <h1 class="movie-title"><%= movie.title %></h1>
+          <img class="movie-pic" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2<%= movie.poster_path %>" >
+          <p class="movie-desc"><%= movie.overview %></p>
+        <% }; %>
     </div>
-  <h1>Comics</h1>
-  <% if (comic.results.length >= 2) { %>
-    <% for (let i = 0; i < 5; i++) { %>
-      <h1><%= comic.results[i].title %></h1>
-      <img src="<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" alt="">
-      <p><%= comic.results[i].description %></p>
-        <form action="/main/added" method="post">
-          <input type="hidden" name="saved[title]" value="<%= comic.results[i].title %>" >
-          <input type="hidden" name="saved[image]" value="<%= comic.results[i].images[0].path %>.<%= comic.results[i].images[0].extension %>" >
-          <input type="hidden" name="saved[notes]" value="">
-          <input type="submit" value="Save">
-        </form>
-      <% }; %>
-    <% }; %>
+    </div>
+    <div class="comic-container">
+      <h1 class="heading">Comics</h1>
+      </br>
+      <div class="card">
+      <% if (comic.results.length) { %>
+        <% for (let i = 0; i < comic.results.length; i++) { %>
+          <h1 class="comic-title"><%= comic.results[i].title %></h1>
+          <img class="comic-pic" src="<%= comic.results[i].thumbnail.path %>.<%= comic.results[i].thumbnail.extension %>" alt="">
+          <p comic="comic-desc"><%= comic.results[i].description %></p>
+            <form action="/main/added" method="post">
+              <input type="hidden" name="saved[title]" value="<%= comic.results[i].title %>" >
+              <input type="hidden" name="saved[thumbnail]" value="<%= comic.results[i].thumbnail.path %>.<%= comic.results[i].thumbnail.extension %>" >
+              <input type="hidden" name="saved[notes]" value="">
+              <input class="button" type="submit" value="Save">
+            </form>
+          <% }; %>
+        <% }; %>
+      </div>
+      </br>
+    </div>
   </div>
   </body>
 </html>

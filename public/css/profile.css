@@ -1,0 +1,63 @@
+* {
+  font-family: 'Hind Guntur', sans-serif;
+}
+ a {
+  text-decoration: none;
+ }
+
+body {
+  background-color: black;
+  color: white
+}
+
+.button {
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 2px 15px;
+  margin: 4px 2px;
+  text-align: center;
+  text-decoration: none;
+  width: 100px;
+}
+
+.comic-container {
+  border: 2px solid white;
+  display: flex;
+  height: 550px;
+  flex-direction: row;
+  overflow-y: scroll;
+  width: 120vh;
+}
+
+.comic-title{
+
+}
+.comic-pic {
+  display: inline-block;
+  float: left;
+  height: 400px;
+  width: 250px;
+}
+
+.comic-desc {
+  display: inline-block;
+  float: right;
+}
+
+.heading {
+  font-size: 16px;
+}
+
+.profile {
+  background-image: url('http://assets2.ignimgs.com/2013/11/13/marvel-logo-1280jpg-8851ea_1280w.jpg');
+  right: 0;
+}
+
+.search {
+  font-size: 16px;
+  height: 50px;
+  width: 300px;
+}
