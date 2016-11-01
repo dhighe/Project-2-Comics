@@ -21,13 +21,19 @@ Profile Page
 ![screen shot 2016-10-25 at 8 45 59 pm](https://cloud.githubusercontent.com/assets/20092541/19731018/0c8bb9ca-9b6a-11e6-9dc6-3443e7410578.png)
 
 Technologies
-Markup :
-*Node
-*Express
-*Marvel Api
+Markup : *Node
+         *Express
+         *Marvel Api
 https://developer.marvel.com/
-(The Movie DB Api
+         *The Movie DB Api
 https://www.themoviedb.org/documentation/api
+
+Uncompleted
+ Markup : - [ ] Sort Order of Saved Comics
+          - [ ] Edit user information from profile 
+          - [ ] Ability to select between Movie and TV show
+          - [ ] Use select field to set limit of searched comics
+          
 
 Heroku
 https://project2-marvel-comics.herokuapp.com/
