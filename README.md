@@ -29,7 +29,7 @@ Search for your favorite marvel movies and find comics to read between release d
  * The Movie DB Api
   * https://www.themoviedb.org/documentation/api
 
-# Uncompleted #
+# Work in progress #
 - [ ] Sort Order of Saved Comics
 - [ ] Edit user information from profile 
 - [ ] Ability to select between Movie and TV show
