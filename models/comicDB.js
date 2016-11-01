@@ -25,7 +25,6 @@ function saveComics(req, res, next) {
 }
 
 function getComics(req, res, next) {
-
   getData().then((db) => {
     console.log('Here are your saved Comics');
     db.collection('saved_comics')
@@ -52,7 +51,7 @@ function deleteComics(req, res, next) {
         db.close();
         next();
       });
-      return false;
+    return false;
   });
   return false;
 }
@@ -61,7 +60,7 @@ function editComics(req, res, next) {
   getData().then((db) => {
     db.collection('saved_comics')
       .findAndModify({ _id: ObjectID(req.params.id) }, [] /* sort */,
-      { $set: req.body.saved} , { new: true }, /* options */ (err, saved) => {
+      { $set: req.body.saved }, { new: true }, /* options */ (err, saved) => {
         if (err) return next(err);
 
         // return the data
@@ -78,5 +77,5 @@ module.exports = {
   saveComics,
   getComics,
   deleteComics,
-  editComics
+  editComics,
 };

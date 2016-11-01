@@ -39,10 +39,7 @@
   },
   "author": "Donald Highe",
   "license": "MIT",
-  "engines": {
-    "node": "6.6.0"
-  },
   "bugs": {
     "url": "https://github.com/dhighe/Project-2-Comics/issues"
-  },
-},
+  }
+}
