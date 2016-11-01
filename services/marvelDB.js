@@ -11,7 +11,7 @@ const ts = timestamp();
 function searchComics(req, res, next) {
   let hash = md5(ts + APIP_KEY + API_KEY);
   console.log('Comic:', req.query.mpfour);
-  fetch(`${API_URL}ts=${ts}&title=${req.query.mpfour}&orderBy=focDate&limit=25&apikey=${API_KEY}&hash=${hash}`)
+  fetch(`${API_URL}ts=${ts}&title=${req.query.mpfour}&limit=25&apikey=${API_KEY}&hash=${hash}`)
   .then(r => r.json())
   .then((result) => {
     res.comic = result.data;

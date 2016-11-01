@@ -23,6 +23,11 @@ body {
   width: 100px;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
 .comic-container {
   border: 2px solid white;
   display: flex;
